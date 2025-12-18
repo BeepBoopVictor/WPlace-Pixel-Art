@@ -9,10 +9,29 @@
   <body>
     <div class="noise"></div>
     <main class="page">
+      <div class="top-controls">
+        <label class="control compact">
+          <span data-i18n="language">Idioma</span>
+          <select id="languageSelect">
+            <option value="es" data-i18n-option="langSpanish">Espa&ntilde;ol</option>
+            <option value="en" data-i18n-option="langEnglish">Ingl&eacute;s</option>
+            <option value="pt" data-i18n-option="langPortuguese">Portugu&eacute;s</option>
+            <option value="de" data-i18n-option="langGerman">Alem&aacute;n</option>
+            <option value="ru" data-i18n-option="langRussian">Ruso</option>
+          </select>
+        </label>
+        <button type="button" id="darkModeToggle" class="ghost-button" data-i18n="darkMode">
+          Modo oscuro
+        </button>
+        <button type="button" id="paletteToggle" class="ghost-button" data-i18n="paletteToggle">
+          Paleta
+        </button>
+      </div>
+
       <header class="hero">
-        <p class="eyebrow">Wplace tools</p>
-        <h1>Convierte tu imagen en pixel art</h1>
-        <p class="lede">
+        <p class="eyebrow" data-i18n="eyebrow">Wplace tools</p>
+        <h1 data-i18n="heroTitle">Convierte tu imagen en pixel art</h1>
+        <p class="lede" data-i18n="heroLede">
           Sube una imagen, elige un modo de conversi&oacute;n y ajusta el tama&ntilde;o del pixel. El resultado se
           genera en tiempo real para preparar tu arte en wplace.
         </p>
@@ -21,28 +40,29 @@
       <section class="panel">
         <div class="controls">
           <label class="control">
-            <span>Imagen de entrada</span>
+            <span data-i18n="inputImage">Imagen de entrada</span>
             <input id="fileInput" type="file" accept="image/*" />
           </label>
 
           <label class="control">
-            <span>Modo</span>
+            <span data-i18n="mode">Modo</span>
             <select id="modeSelect">
-              <option value="pixelate">Pixelado limpio</option>
-              <option value="blocks">Bloques promedio</option>
-              <option value="posterize">Posterizado</option>
-              <option value="grayscale">Escala de grises</option>
-              <option value="bw">Blanco y negro</option>
-              <option value="dither">Tramado (Floyd)</option>
-              <option value="bayer">Tramado (Bayer)</option>
-              <option value="sepia">Sepia</option>
-              <option value="invert">Invertido</option>
-              <option value="edges">Contornos</option>
+              <option value="pixelate" data-i18n-option="modePixelate">Pixelado limpio</option>
+              <option value="blocks" data-i18n-option="modeBlocks">Bloques promedio</option>
+              <option value="posterize" data-i18n-option="modePosterize">Posterizado</option>
+              <option value="grayscale" data-i18n-option="modeGrayscale">Escala de grises</option>
+              <option value="bw" data-i18n-option="modeBW">Blanco y negro</option>
+              <option value="dither" data-i18n-option="modeDither">Tramado (Floyd)</option>
+              <option value="bayer" data-i18n-option="modeBayer">Tramado (Bayer)</option>
+              <option value="colorDither" data-i18n-option="modeColorDither">Tramado en color</option>
+              <option value="sepia" data-i18n-option="modeSepia">Sepia</option>
+              <option value="invert" data-i18n-option="modeInvert">Invertido</option>
+              <option value="edges" data-i18n-option="modeEdges">Contornos</option>
             </select>
           </label>
 
           <label class="control">
-            <span>Tama&ntilde;o del pixel</span>
+            <span data-i18n="pixelSize">Tama&ntilde;o del pixel</span>
             <div class="range-row">
               <input id="pixelSize" type="range" min="2" max="48" value="12" />
               <span id="pixelSizeValue">12 px</span>
@@ -50,73 +70,142 @@
           </label>
 
           <label class="control" id="levelsControl">
-            <span>Niveles de color</span>
+            <span data-i18n="colorLevels">Niveles de color</span>
             <div class="range-row">
               <input id="colorLevels" type="range" min="2" max="12" value="6" />
               <span id="colorLevelsValue">6</span>
             </div>
           </label>
 
-          <label class="control">
-            <span>Dimensiones de salida (px)</span>
-            <div class="size-row">
-              <input id="widthInput" type="number" min="16" max="2000" placeholder="Ancho" />
-              <input id="heightInput" type="number" min="16" max="2000" placeholder="Alto" />
+          <label class="control" id="ditherStrengthControl">
+            <span data-i18n="ditherStrength">Intensidad de dithering</span>
+            <div class="range-row">
+              <input id="ditherStrength" type="range" min="0" max="100" value="65" />
+              <span id="ditherStrengthValue">65%</span>
             </div>
-            <span class="hint" id="sizeInfo">Auto segun la imagen</span>
+          </label>
+
+          <label class="control" id="detailPreserveControl">
+            <span data-i18n="detailPreserve">Preservacion de detalle</span>
+            <div class="range-row">
+              <input id="detailPreserve" type="range" min="0" max="100" value="35" />
+              <span id="detailPreserveValue">35%</span>
+            </div>
+          </label>
+
+          <label class="control">
+            <span data-i18n="outputSize">Dimensiones de salida (px)</span>
+            <div class="size-row">
+              <input
+                id="widthInput"
+                type="number"
+                min="16"
+                max="2000"
+                placeholder="Ancho"
+                data-i18n-placeholder="widthPlaceholder"
+              />
+              <input
+                id="heightInput"
+                type="number"
+                min="16"
+                max="2000"
+                placeholder="Alto"
+                data-i18n-placeholder="heightPlaceholder"
+              />
+            </div>
+            <span class="hint" id="sizeInfo" data-i18n="sizeHintAuto">Auto segun la imagen</span>
           </label>
         </div>
 
-        <div class="palette-panel">
+        <div class="palette-panel palette-panel--collapsible" id="palettePanel">
           <div class="palette-header">
             <div>
-              <h3>Paleta activa</h3>
-              <p class="hint">Selecciona los colores permitidos para el pixel art.</p>
+              <h3 data-i18n="paletteTitle">Paleta activa</h3>
+              <p class="hint" data-i18n="paletteHint">Selecciona los colores permitidos para el pixel art.</p>
             </div>
             <div class="palette-actions">
-              <button type="button" id="paletteSelectAll">Seleccionar todo</button>
-              <button type="button" id="paletteClear">Limpiar</button>
+              <button type="button" id="paletteSelectAll" data-i18n="paletteSelectAll">Seleccionar todo</button>
+              <button type="button" id="paletteClear" data-i18n="paletteClear">Limpiar</button>
             </div>
           </div>
           <div class="palette-meta">
             <span id="paletteCount">0 activos</span>
-            <span class="palette-note">Minimo 1 color seleccionado.</span>
+            <span class="palette-note" data-i18n="paletteMin">Minimo 1 color seleccionado.</span>
           </div>
           <div id="paletteGrid" class="palette-grid" aria-label="Paleta de colores"></div>
         </div>
 
+        <details class="layers-panel" id="layersPanel">
+          <summary class="layers-summary" data-i18n="layersSummary">Capas por color</summary>
+          <div class="palette-header">
+            <div>
+              <h3 data-i18n="layersTitle">Capas por color</h3>
+              <p class="hint" data-i18n="layersHint">
+                Muestra u oculta colores en el resultado sin alterar la paleta.
+              </p>
+            </div>
+            <div class="palette-actions">
+              <button type="button" id="layersSelectAll" data-i18n="layersSelectAll">Mostrar todo</button>
+              <button type="button" id="layersClear" data-i18n="layersClear">Ocultar todo</button>
+            </div>
+          </div>
+          <div class="palette-meta">
+            <span id="layersCount">0 visibles</span>
+            <label class="layer-toggle">
+              <input type="checkbox" id="layersToggle" checked />
+              <span data-i18n="layersToggle">Ver por capas</span>
+            </label>
+          </div>
+          <div id="layersGrid" class="palette-grid" aria-label="Capas de color"></div>
+        </details>
+
         <div class="preview">
           <div class="card">
             <div class="card-header">
-              <h2>Original</h2>
-              <span>Referencia</span>
+              <h2 data-i18n="originalTitle">Original</h2>
+              <span data-i18n="originalSubtitle">Referencia</span>
             </div>
-            <canvas id="originalCanvas"></canvas>
+            <div class="canvas-wrap">
+              <canvas id="originalCanvas"></canvas>
+            </div>
           </div>
           <div class="card">
             <div class="card-header">
-              <h2>Pixel art</h2>
-              <span>Resultado</span>
+              <h2 data-i18n="pixelArtTitle">Pixel art</h2>
+              <span data-i18n="pixelArtSubtitle">Resultado</span>
             </div>
-            <canvas id="outputCanvas"></canvas>
+            <div class="pixel-tooltip" id="pixelTooltip" aria-hidden="true">
+              <div class="pixel-sample" id="pixelSample"></div>
+              <div class="pixel-meta" id="pixelMeta"></div>
+            </div>
+            <div class="canvas-wrap">
+              <canvas id="outputCanvas" class="output-canvas"></canvas>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="ad-slot" aria-label="Espacio para anuncio de Google">
-        <div>
-          <p>Espacio para anuncio de Google (728x90)</p>
+        <div class="ad-slot__content" id="adSlot">
+          <p data-i18n="adSlot">Espacio para anuncio de Google (728x90)</p>
         </div>
+        <a id="adFallback" class="ad-fallback" href="#" target="_blank" rel="noopener" hidden>
+          <img id="adFallbackImage" alt="Anuncio alternativo" />
+        </a>
       </section>
 
       <section class="tips">
         <div>
-          <h3>Paleta personalizada</h3>
-          <p>Marca los tonos que quieras usar. Todo el pixel art se ajusta a esa paleta.</p>
+          <h3 data-i18n="tipsPaletteTitle">Paleta personalizada</h3>
+          <p data-i18n="tipsPaletteBody">
+            Marca los tonos que quieras usar. Todo el pixel art se ajusta a esa paleta.
+          </p>
         </div>
         <div>
-          <h3>Controla la escala</h3>
-          <p>Define el ancho o el alto y la otra medida se calcula automaticamente.</p>
+          <h3 data-i18n="tipsScaleTitle">Controla la escala</h3>
+          <p data-i18n="tipsScaleBody">
+            Define el ancho o el alto y la otra medida se calcula automaticamente.
+          </p>
         </div>
       </section>
     </main>
