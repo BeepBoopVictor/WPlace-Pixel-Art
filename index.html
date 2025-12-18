@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wplace Pixel Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">Wplace tools</p>
+        <h1>Convierte tu imagen en pixel art</h1>
+        <p class="lede">
+          Sube una imagen, elige un modo de conversi&oacute;n y ajusta el tama&ntilde;o del pixel. El resultado se
+          genera en tiempo real para preparar tu arte en wplace.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <label class="control">
+            <span>Imagen de entrada</span>
+            <input id="fileInput" type="file" accept="image/*" />
+          </label>
+
+          <label class="control">
+            <span>Modo</span>
+            <select id="modeSelect">
+              <option value="pixelate">Pixelado limpio</option>
+              <option value="blocks">Bloques promedio</option>
+              <option value="posterize">Posterizado</option>
+              <option value="grayscale">Escala de grises</option>
+              <option value="bw">Blanco y negro</option>
+              <option value="dither">Tramado (Floyd)</option>
+              <option value="bayer">Tramado (Bayer)</option>
+              <option value="sepia">Sepia</option>
+              <option value="invert">Invertido</option>
+              <option value="edges">Contornos</option>
+            </select>
+          </label>
+
+          <label class="control">
+            <span>Tama&ntilde;o del pixel</span>
+            <div class="range-row">
+              <input id="pixelSize" type="range" min="2" max="48" value="12" />
+              <span id="pixelSizeValue">12 px</span>
+            </div>
+          </label>
+
+          <label class="control" id="levelsControl">
+            <span>Niveles de color</span>
+            <div class="range-row">
+              <input id="colorLevels" type="range" min="2" max="12" value="6" />
+              <span id="colorLevelsValue">6</span>
+            </div>
+          </label>
+
+          <label class="control">
+            <span>Dimensiones de salida (px)</span>
+            <div class="size-row">
+              <input id="widthInput" type="number" min="16" max="2000" placeholder="Ancho" />
+              <input id="heightInput" type="number" min="16" max="2000" placeholder="Alto" />
+            </div>
+            <span class="hint" id="sizeInfo">Auto segun la imagen</span>
+          </label>
+        </div>
+
+        <div class="palette-panel">
+          <div class="palette-header">
+            <div>
+              <h3>Paleta activa</h3>
+              <p class="hint">Selecciona los colores permitidos para el pixel art.</p>
+            </div>
+            <div class="palette-actions">
+              <button type="button" id="paletteSelectAll">Seleccionar todo</button>
+              <button type="button" id="paletteClear">Limpiar</button>
+            </div>
+          </div>
+          <div class="palette-meta">
+            <span id="paletteCount">0 activos</span>
+            <span class="palette-note">Minimo 1 color seleccionado.</span>
+          </div>
+          <div id="paletteGrid" class="palette-grid" aria-label="Paleta de colores"></div>
+        </div>
+
+        <div class="preview">
+          <div class="card">
+            <div class="card-header">
+              <h2>Original</h2>
+              <span>Referencia</span>
+            </div>
+            <canvas id="originalCanvas"></canvas>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h2>Pixel art</h2>
+              <span>Resultado</span>
+            </div>
+            <canvas id="outputCanvas"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="ad-slot" aria-label="Espacio para anuncio de Google">
+        <div>
+          <p>Espacio para anuncio de Google (728x90)</p>
+        </div>
+      </section>
+
+      <section class="tips">
+        <div>
+          <h3>Paleta personalizada</h3>
+          <p>Marca los tonos que quieras usar. Todo el pixel art se ajusta a esa paleta.</p>
+        </div>
+        <div>
+          <h3>Controla la escala</h3>
+          <p>Define el ancho o el alto y la otra medida se calcula automaticamente.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
